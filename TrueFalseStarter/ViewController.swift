@@ -37,6 +37,12 @@ class ViewController: UIViewController {
             fatalError("Error serializing questions: \(error)")
         }
     }()
+
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        get{
+            return .lightContent
+        }
+    }
     
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var trueButton: UIButton!
