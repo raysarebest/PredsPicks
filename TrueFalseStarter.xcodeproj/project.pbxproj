@@ -20,6 +20,7 @@
 /* Begin PBXFileReference section */
 		4C942C6E216C6DEE002B4D2B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		4C942C70216C6F31002B4D2B /* Questions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Questions.plist; sourceTree = "<group>"; };
+		4C942C72216C77E7002B4D2B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		97093D381C913506001275BC /* TrueFalseStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrueFalseStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97093D3B1C913506001275BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97093D3D1C913506001275BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		97093D2F1C913506001275BC = {
 			isa = PBXGroup;
 			children = (
+				4C942C72216C77E7002B4D2B /* README.md */,
 				97093D3A1C913506001275BC /* TrueFalseStarter */,
 				97093D391C913506001275BC /* Products */,
 			);

@@ -10,7 +10,7 @@ It is worth noting that while we have provided a final question set and UI scree
 #### Required tasks
 
 - [ ] The starter files contain a Storyboard scene that is simulated to a 4.7 inch iPhone without any constraints to position elements. If you run the app in the simulator for a 5.5 inch iPhone, the layout looks fine but it breaks on any other device size. Convert the Storyboard back to a universal scene and add constraints to maintain the layout such all UI elements are sized and spaced appropriately for all iPhones of screen sizes 4.7 and 5.5. inches.
-- [ ] Refactor the existing code such that individual questions are modeled using a class or struct
+- [x] Refactor the existing code such that individual questions are modeled using a class or struct
 - [ ] Ensure that code adheres to the MVC pattern. Please place your new custom data structure for questions in a new Swift file.
 - [ ] Enhance the quiz so it can accommodate four answer choices for each question, as shown in the mockups and sample question set.
 - [ ] Add functionality such that during each game, questions are chosen at random, though no question will be repeated within a single game.
