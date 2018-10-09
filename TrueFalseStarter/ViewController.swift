@@ -19,12 +19,24 @@ class ViewController: UIViewController {
     
     var gameSound: SystemSoundID = 0
     
-    let trivia: [[String : String]] = [
-        ["Question": "Only female koalas can whistle", "Answer": "False"],
-        ["Question": "Blue whales are technically whales", "Answer": "True"],
-        ["Question": "Camels are cannibalistic", "Answer": "False"],
-        ["Question": "All ducks are birds", "Answer": "True"]
-    ]
+    let trivia: [Question] = {
+        guard let path = Bundle.main.path(forResource: "Questions", ofType: "plist") else{
+            fatalError("Couldn't find questions list")
+        }
+        do{
+            return try PropertyListDecoder().decode([Question].self, from: try Data(contentsOf: URL(fileURLWithPath: path)))
+        }
+        catch let error as NSError{
+            let message = "Error generating questions data"
+            guard let reason = error.localizedFailureReason else{
+                fatalError(message + ". Furthermore, an error occurred generating the failure reason")
+            }
+            fatalError(message + ": \(reason)")
+        }
+        catch let error as DecodingError{
+            fatalError("Error serializing questions: \(error)")
+        }
+    }()
     
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var trueButton: UIButton!
@@ -47,8 +59,8 @@ class ViewController: UIViewController {
     
     func displayQuestion() {
         indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: trivia.count)
-        let questionDictionary = trivia[indexOfSelectedQuestion]
-        questionField.text = questionDictionary["Question"]
+        let question = trivia[indexOfSelectedQuestion]
+        questionField.text = question.text
         playAgainButton.isHidden = true
     }
     
@@ -68,10 +80,14 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         questionsAsked += 1
         
-        let selectedQuestionDict = trivia[indexOfSelectedQuestion]
-        let correctAnswer = selectedQuestionDict["Answer"]
+        let selectedQuestion = trivia[indexOfSelectedQuestion]
+        guard let correctAnswer = selectedQuestion.correctAnswer else{
+            questionField.text = "Sorry, wrong answer!"
+            loadNextRoundWithDelay(seconds: 2)
+            return
+        }
         
-        if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
+        if (sender === trueButton &&  correctAnswer.text == "True") || (sender === falseButton && correctAnswer.text == "False") {
             correctQuestions += 1
             questionField.text = "Correct!"
         } else {

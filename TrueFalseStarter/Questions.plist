@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>text</key>
+		<string>Only female koalas can whistle</string>
+		<key>possibleAnswers</key>
+		<array>
+			<dict>
+				<key>text</key>
+				<string>False</string>
+				<key>isCorrect</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>text</key>
+				<string>True</string>
+				<key>isCorrect</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>Blue whales are technically whales</string>
+		<key>possibleAnswers</key>
+		<array>
+			<dict>
+				<key>text</key>
+				<string>True</string>
+				<key>isCorrect</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>text</key>
+				<string>False</string>
+				<key>isCorrect</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>Camels are cannibalistic</string>
+		<key>possibleAnswers</key>
+		<array>
+			<dict>
+				<key>text</key>
+				<string>True</string>
+				<key>isCorrect</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>text</key>
+				<string>False</string>
+				<key>isCorrect</key>
+				<true/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>All ducks are birds</string>
+		<key>possibleAnswers</key>
+		<array>
+			<dict>
+				<key>text</key>
+				<string>True</string>
+				<key>isCorrect</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>text</key>
+				<string>False</string>
+				<key>isCorrect</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+</array>
+</plist>
