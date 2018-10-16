@@ -5,76 +5,80 @@
 	<dict>
 		<key>text</key>
 		<string>Only female koalas can whistle</string>
+		<key>correctAnswer</key>
+		<dict>
+			<key>value</key>
+			<string>False</string>
+		</dict>
 		<key>possibleAnswers</key>
 		<array>
 			<dict>
-				<key>text</key>
+				<key>value</key>
 				<string>False</string>
-				<key>isCorrect</key>
-				<true/>
 			</dict>
 			<dict>
-				<key>text</key>
+				<key>value</key>
 				<string>True</string>
-				<key>isCorrect</key>
-				<false/>
 			</dict>
 		</array>
 	</dict>
 	<dict>
 		<key>text</key>
 		<string>Blue whales are technically whales</string>
+		<key>correctAnswer</key>
+		<dict>
+			<key>value</key>
+			<string>True</string>
+		</dict>
 		<key>possibleAnswers</key>
 		<array>
 			<dict>
-				<key>text</key>
+				<key>value</key>
 				<string>True</string>
-				<key>isCorrect</key>
-				<true/>
 			</dict>
 			<dict>
-				<key>text</key>
+				<key>value</key>
 				<string>False</string>
-				<key>isCorrect</key>
-				<false/>
 			</dict>
 		</array>
 	</dict>
 	<dict>
 		<key>text</key>
 		<string>Camels are cannibalistic</string>
+		<key>correctAnswer</key>
+		<dict>
+			<key>value</key>
+			<string>False</string>
+		</dict>
 		<key>possibleAnswers</key>
 		<array>
 			<dict>
-				<key>text</key>
+				<key>value</key>
 				<string>True</string>
-				<key>isCorrect</key>
-				<false/>
 			</dict>
 			<dict>
-				<key>text</key>
+				<key>value</key>
 				<string>False</string>
-				<key>isCorrect</key>
-				<true/>
 			</dict>
 		</array>
 	</dict>
 	<dict>
 		<key>text</key>
 		<string>All ducks are birds</string>
+		<key>correctAnswer</key>
+		<dict>
+			<key>value</key>
+			<string>True</string>
+		</dict>
 		<key>possibleAnswers</key>
 		<array>
 			<dict>
-				<key>text</key>
+				<key>value</key>
 				<string>True</string>
-				<key>isCorrect</key>
-				<true/>
 			</dict>
 			<dict>
-				<key>text</key>
+				<key>value</key>
 				<string>False</string>
-				<key>isCorrect</key>
-				<false/>
 			</dict>
 		</array>
 	</dict>

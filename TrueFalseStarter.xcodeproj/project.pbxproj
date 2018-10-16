@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C942C6F216C6DEE002B4D2B /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C942C6E216C6DEE002B4D2B /* Question.swift */; };
 		4C942C71216C6F31002B4D2B /* Questions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C942C70216C6F31002B4D2B /* Questions.plist */; };
+		4C9E99C1216FDC820005D664 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E99C0216FDC820005D664 /* Quiz.swift */; };
 		97093D3C1C913506001275BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97093D3B1C913506001275BC /* AppDelegate.swift */; };
 		97093D3E1C913506001275BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97093D3D1C913506001275BC /* ViewController.swift */; };
 		97093D411C913506001275BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97093D3F1C913506001275BC /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 		4C942C6E216C6DEE002B4D2B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		4C942C70216C6F31002B4D2B /* Questions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Questions.plist; sourceTree = "<group>"; };
 		4C942C72216C77E7002B4D2B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4C9E99C0216FDC820005D664 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		97093D381C913506001275BC /* TrueFalseStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrueFalseStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97093D3B1C913506001275BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97093D3D1C913506001275BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				97093D3B1C913506001275BC /* AppDelegate.swift */,
 				97093D3D1C913506001275BC /* ViewController.swift */,
 				4C942C6E216C6DEE002B4D2B /* Question.swift */,
+				4C9E99C0216FDC820005D664 /* Quiz.swift */,
 				4C942C70216C6F31002B4D2B /* Questions.plist */,
 				97093D3F1C913506001275BC /* Main.storyboard */,
 				97093D421C913506001275BC /* Assets.xcassets */,
@@ -103,7 +106,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 1000;
-				ORGANIZATIONNAME = Treehouse;
+				ORGANIZATIONNAME = "Michael Hulet";
 				TargetAttributes = {
 					97093D371C913506001275BC = {
 						CreatedOnToolsVersion = 7.3;
@@ -152,6 +155,7 @@
 			files = (
 				4C942C6F216C6DEE002B4D2B /* Question.swift in Sources */,
 				97093D3E1C913506001275BC /* ViewController.swift in Sources */,
+				4C9E99C1216FDC820005D664 /* Quiz.swift in Sources */,
 				97093D3C1C913506001275BC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

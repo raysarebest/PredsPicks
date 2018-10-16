@@ -12,31 +12,9 @@ import AudioToolbox
 
 class ViewController: UIViewController {
     
-    let questionsPerRound = 4
-    var questionsAsked = 0
-    var correctQuestions = 0
-    var indexOfSelectedQuestion: Int = 0
-    
     var gameSound: SystemSoundID = 0
     
-    let trivia: [Question] = {
-        guard let path = Bundle.main.path(forResource: "Questions", ofType: "plist") else{
-            fatalError("Couldn't find questions list")
-        }
-        do{
-            return try PropertyListDecoder().decode([Question].self, from: try Data(contentsOf: URL(fileURLWithPath: path)))
-        }
-        catch let error as NSError{
-            let message = "Error generating questions data"
-            guard let reason = error.localizedFailureReason else{
-                fatalError(message + ". Furthermore, an error occurred generating the failure reason")
-            }
-            fatalError(message + ": \(reason)")
-        }
-        catch let error as DecodingError{
-            fatalError("Error serializing questions: \(error)")
-        }
-    }()
+    var trivia = Quiz()
 
     override var preferredStatusBarStyle: UIStatusBarStyle{
         get{
@@ -64,8 +42,10 @@ class ViewController: UIViewController {
     }
     
     func displayQuestion() {
-        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: trivia.count)
-        let question = trivia[indexOfSelectedQuestion]
+        guard let question = trivia.currentQuestion else{
+            displayScore()
+            return
+        }
         questionField.text = question.text
         playAgainButton.isHidden = true
     }
@@ -78,33 +58,31 @@ class ViewController: UIViewController {
         // Display play again button
         playAgainButton.isHidden = false
         
-        questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
+        questionField.text = "Way to go!\nYou got \(trivia.correctQuestions.count) out of \(trivia.questions.count) correct!"
         
     }
     
     @IBAction func checkAnswer(_ sender: UIButton) {
-        // Increment the questions asked counter
-        questionsAsked += 1
-        
-        let selectedQuestion = trivia[indexOfSelectedQuestion]
-        guard let correctAnswer = selectedQuestion.correctAnswer else{
-            questionField.text = "Sorry, wrong answer!"
+
+        defer{
             loadNextRoundWithDelay(seconds: 2)
+        }
+
+        guard let answer = sender.titleLabel?.text, let result = try? trivia.answerCurrentQuestion(Question.Answer(value: answer)) else{
+            questionField.text = "Sorry, wrong answer!"
             return
         }
-        
-        if (sender === trueButton &&  correctAnswer.text == "True") || (sender === falseButton && correctAnswer.text == "False") {
-            correctQuestions += 1
-            questionField.text = "Correct!"
-        } else {
-            questionField.text = "Sorry, wrong answer!"
+
+        switch result{
+            case .correct:
+                questionField.text = "Correct!"
+            case .incorrect:
+                questionField.text = "Sorry, wrong answer!"
         }
-        
-        loadNextRoundWithDelay(seconds: 2)
     }
     
     func nextRound() {
-        if questionsAsked == questionsPerRound {
+        if trivia.isComplete{
             // Game is over
             displayScore()
         } else {
@@ -118,8 +96,8 @@ class ViewController: UIViewController {
         trueButton.isHidden = false
         falseButton.isHidden = false
         
-        questionsAsked = 0
-        correctQuestions = 0
+        trivia = Quiz()
+        
         nextRound()
     }
     

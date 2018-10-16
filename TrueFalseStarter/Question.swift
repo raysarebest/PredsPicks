@@ -6,16 +6,16 @@
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
 
-struct Question: Decodable{
-    struct Answer: Decodable, Hashable{
-        let text: String
-        let isCorrect: Bool
+typealias Quizzable = Decodable & Hashable
+
+struct Question: Quizzable{
+    struct Answer: Quizzable{
+        let value: String
+        func isCorrect(for question: Question) -> Bool{
+            return value == question.correctAnswer.value
+        }
     }
     let text: String
     let possibleAnswers: Set<Answer>
-    var correctAnswer: Answer?{
-        get{
-            return possibleAnswers.first(where: {$0.isCorrect})
-        }
-    }
+    let correctAnswer: Answer
 }
