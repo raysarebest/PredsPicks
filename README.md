@@ -11,8 +11,8 @@ It is worth noting that while we have provided a final question set and UI scree
 
 - [x] The starter files contain a Storyboard scene that is simulated to a 4.7 inch iPhone without any constraints to position elements. If you run the app in the simulator for a 5.5 inch iPhone, the layout looks fine but it breaks on any other device size. Convert the Storyboard back to a universal scene and add constraints to maintain the layout such all UI elements are sized and spaced appropriately for all iPhones of screen sizes 4.7 and 5.5. inches.
 - [x] Refactor the existing code such that individual questions are modeled using a class or struct
-- [ ] Ensure that code adheres to the MVC pattern. Please place your new custom data structure for questions in a new Swift file.
-- [ ] Enhance the quiz so it can accommodate four answer choices for each question, as shown in the mockups and sample question set.
+- [x] Ensure that code adheres to the MVC pattern. Please place your new custom data structure for questions in a new Swift file.
+- [x] Enhance the quiz so it can accommodate four answer choices for each question, as shown in the mockups and sample question set.
 - [x] Add functionality such that during each game, questions are chosen at random, though no question will be repeated within a single game.
 - [ ] Before you submit your project for review, make sure you can check off all of the items on the [Student Project Submission Checklist](http://treehouse-techdegree.s3.amazonaws.com/Student-Project-Submission-Checklist.pdf). The checklist is designed to help you make sure you’ve met the grading requirements and that your project is complete and ready to be submitted!
 
