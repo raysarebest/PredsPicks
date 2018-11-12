@@ -13,7 +13,7 @@ It is worth noting that while we have provided a final question set and UI scree
 - [x] Refactor the existing code such that individual questions are modeled using a class or struct
 - [ ] Ensure that code adheres to the MVC pattern. Please place your new custom data structure for questions in a new Swift file.
 - [ ] Enhance the quiz so it can accommodate four answer choices for each question, as shown in the mockups and sample question set.
-- [ ] Add functionality such that during each game, questions are chosen at random, though no question will be repeated within a single game.
+- [x] Add functionality such that during each game, questions are chosen at random, though no question will be repeated within a single game.
 - [ ] Before you submit your project for review, make sure you can check off all of the items on the [Student Project Submission Checklist](http://treehouse-techdegree.s3.amazonaws.com/Student-Project-Submission-Checklist.pdf). The checklist is designed to help you make sure you’ve met the grading requirements and that your project is complete and ready to be submitted!
 
 #### Extra credit

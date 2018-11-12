@@ -14,6 +14,9 @@ struct Question: Quizzable{
         func isCorrect(for question: Question) -> Bool{
             return value == question.correctAnswer.value
         }
+        fileprivate init(value: String){
+            self.value = value
+        }
     }
     let text: String
     let possibleAnswers: Set<Answer>

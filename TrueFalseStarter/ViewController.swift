@@ -23,8 +23,7 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet weak var questionField: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var answersView: UIStackView!
     @IBOutlet weak var playAgainButton: UIButton!
     
 
@@ -46,14 +45,22 @@ class ViewController: UIViewController {
             displayScore()
             return
         }
+
+        answersView.removeAllArrangedSubviews()
+
+        for answer in question.possibleAnswers{
+            let button = AnswerButton(answer: answer)
+            button.addTarget(self, action: #selector(checkAnswer(_:)), for: .touchUpInside)
+            answersView.addArrangedSubview(button)
+        }
+
         questionField.text = question.text
         playAgainButton.isHidden = true
     }
     
     func displayScore() {
         // Hide the answer buttons
-        trueButton.isHidden = true
-        falseButton.isHidden = true
+        answersView.removeAllArrangedSubviews()
         
         // Display play again button
         playAgainButton.isHidden = false
@@ -68,7 +75,7 @@ class ViewController: UIViewController {
             loadNextRoundWithDelay(seconds: 2)
         }
 
-        guard let answer = sender.titleLabel?.text, let result = try? trivia.answerCurrentQuestion(Question.Answer(value: answer)) else{
+        guard let button = sender as? AnswerButton, let result = try? trivia.answerCurrentQuestion(button.answer) else{
             questionField.text = "Sorry, wrong answer!"
             return
         }
@@ -91,30 +98,24 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func playAgain() {
+    @IBAction func playAgain() -> Void{
         // Show the answer buttons
-        trueButton.isHidden = false
-        falseButton.isHidden = false
-        
         trivia = Quiz()
         
         nextRound()
     }
     
-
-    
     // MARK: Helper Methods
     
-    func loadNextRoundWithDelay(seconds: Int) {
-        // Converts a delay in seconds to nanoseconds as signed 64 bit integer
-        let delay = Int64(NSEC_PER_SEC * UInt64(seconds))
-        // Calculates a time value to execute the method given current time and delay
-        let dispatchTime = DispatchTime.now() + Double(delay) / Double(NSEC_PER_SEC)
-        
+    func loadNextRoundWithDelay(seconds: DispatchTimeInterval) -> Void{
         // Executes the nextRound method at the dispatch time on the main queue
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
             self.nextRound()
         }
+    }
+
+    func loadNextRoundWithDelay(seconds: Int) -> Void{
+        loadNextRoundWithDelay(seconds: .seconds(seconds))
     }
     
     func loadGameStartSound() {
@@ -128,3 +129,11 @@ class ViewController: UIViewController {
     }
 }
 
+extension UIStackView{
+    func removeAllArrangedSubviews() -> Void{
+        for view in arrangedSubviews{
+            removeArrangedSubview(view)
+            view.removeFromSuperview()
+        }
+    }
+}
