@@ -30,7 +30,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K17-uy-MvB">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K17-uy-MvB" customClass="StyledButton" customModule="TrueFalseStarter" customModuleProvider="target">
                                 <rect key="frame" x="37" y="597" width="300" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.57647058823529407" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -43,18 +43,18 @@
                                     <action selector="playAgain" destination="BYZ-38-t0r" eventType="touchUpInside" id="klz-B2-JAN"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13G-tS-gWc">
-                                <rect key="frame" x="16" y="138" width="343" height="451"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIR-bb-ip3">
+                                <rect key="frame" x="37" y="138" width="300" height="451"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="200" axis="vertical" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="RSU-ni-Wel">
-                                        <rect key="frame" x="0.0" y="125.5" width="343" height="200"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="200" axis="vertical" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lR4-2b-RT8">
+                                        <rect key="frame" x="0.0" y="125.5" width="300" height="200"/>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="RSU-ni-Wel" secondAttribute="trailing" id="DeH-LW-jOR"/>
-                                    <constraint firstItem="RSU-ni-Wel" firstAttribute="centerY" secondItem="13G-tS-gWc" secondAttribute="centerY" id="XOo-eS-hap"/>
-                                    <constraint firstItem="RSU-ni-Wel" firstAttribute="leading" secondItem="13G-tS-gWc" secondAttribute="leading" id="b47-Y7-Ue2"/>
+                                    <constraint firstAttribute="trailing" secondItem="lR4-2b-RT8" secondAttribute="trailing" id="MAC-ZR-8cQ"/>
+                                    <constraint firstItem="lR4-2b-RT8" firstAttribute="leading" secondItem="RIR-bb-ip3" secondAttribute="leading" id="XQa-9t-gEy"/>
+                                    <constraint firstItem="lR4-2b-RT8" firstAttribute="centerY" secondItem="RIR-bb-ip3" secondAttribute="centerY" id="YbE-hg-ATZ"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -63,18 +63,18 @@
                             <constraint firstItem="I3V-ih-1Ky" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="49T-g9-z52"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="K17-uy-MvB" secondAttribute="bottom" constant="20" id="IS2-qb-Nqb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="I3V-ih-1Ky" secondAttribute="trailing" constant="22" id="Ib4-iP-hkd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RIR-bb-ip3" secondAttribute="trailing" constant="22" id="Jpr-Aj-OLz"/>
                             <constraint firstItem="I3V-ih-1Ky" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="21" id="PZs-jY-oa8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="K17-uy-MvB" secondAttribute="trailing" constant="22" id="anD-Vo-wPG"/>
-                            <constraint firstItem="13G-tS-gWc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="cgg-2i-3yA"/>
+                            <constraint firstItem="K17-uy-MvB" firstAttribute="top" secondItem="RIR-bb-ip3" secondAttribute="bottom" constant="8" id="cMm-5c-wEo"/>
+                            <constraint firstItem="RIR-bb-ip3" firstAttribute="top" secondItem="I3V-ih-1Ky" secondAttribute="bottom" constant="8" id="eAj-mO-Lro"/>
                             <constraint firstItem="K17-uy-MvB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="21" id="g88-W8-Pip"/>
-                            <constraint firstItem="K17-uy-MvB" firstAttribute="top" secondItem="13G-tS-gWc" secondAttribute="bottom" constant="8" id="jbq-8m-k7E"/>
-                            <constraint firstItem="13G-tS-gWc" firstAttribute="top" secondItem="I3V-ih-1Ky" secondAttribute="bottom" constant="8" id="q1c-kC-o4I"/>
-                            <constraint firstItem="13G-tS-gWc" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="v5f-yl-o8F"/>
+                            <constraint firstItem="RIR-bb-ip3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="21" id="onv-RI-XRH"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="answersView" destination="RSU-ni-Wel" id="mEW-yf-gtx"/>
+                        <outlet property="answersView" destination="lR4-2b-RT8" id="mnD-jL-7oR"/>
                         <outlet property="playAgainButton" destination="K17-uy-MvB" id="0Bx-Cm-ye0"/>
                         <outlet property="questionField" destination="I3V-ih-1Ky" id="7UI-o2-ATi"/>
                     </connections>

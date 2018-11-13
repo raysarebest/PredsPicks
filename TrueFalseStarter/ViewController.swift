@@ -69,23 +69,30 @@ class ViewController: UIViewController {
         
     }
     
-    @IBAction func checkAnswer(_ sender: UIButton) {
+    @objc func checkAnswer(_ sender: AnswerButton) -> Void{
 
-        defer{
-            loadNextRoundWithDelay(seconds: 2)
+        if let buttons = answersView.arrangedSubviews as? [AnswerButton], let question = trivia.currentQuestion{
+            for button in buttons{
+                button.displayForAnswerCorectness(button.answer.isCorrect(for: question))
+            }
         }
 
-        guard let button = sender as? AnswerButton, let result = try? trivia.answerCurrentQuestion(button.answer) else{
-            questionField.text = "Sorry, wrong answer!"
-            return
+        do{
+            let result = try trivia.answerCurrentQuestion(sender.answer)
+
+            switch result{
+                case .correct:
+                    questionField.text = "Correct!"
+                case .incorrect:
+                    questionField.text = "Sorry, wrong answer!"
+            }
+        }
+        catch{
+            // The only error that can be thrown is if the quiz is over
+            displayScore()
         }
 
-        switch result{
-            case .correct:
-                questionField.text = "Correct!"
-            case .incorrect:
-                questionField.text = "Sorry, wrong answer!"
-        }
+        loadNextRoundWithDelay(seconds: 2)
     }
     
     func nextRound() {
@@ -99,9 +106,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func playAgain() -> Void{
-        // Show the answer buttons
         trivia = Quiz()
-        
         nextRound()
     }
     
