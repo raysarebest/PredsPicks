@@ -14,8 +14,6 @@ class StyledButton: UIButton {
     private var opacities = [UIControl.State: CGFloat]()
 
     static let shrunkenScale: CGFloat = 0.9
-    static let springDamping: CGFloat = 0.8
-    static let springDuration: TimeInterval = 0.2
 
     override func layoutSubviews() -> Void{
         layer.cornerRadius = 5
@@ -56,13 +54,9 @@ class StyledButton: UIButton {
         didSet{
             updateAppearance()
 
-            if !UIAccessibility.isReduceMotionEnabled{
-                let transform: CGFloat = isHighlighted ? StyledButton.shrunkenScale : 1
-
-                UIView.animate(withDuration: StyledButton.springDuration, delay: 0, usingSpringWithDamping: StyledButton.springDamping, initialSpringVelocity: 0, options:
-                    [.allowAnimatedContent, .beginFromCurrentState], animations: {
-                    self.transform = CGAffineTransform(scaleX: transform, y: transform)
-                }, completion: nil)
+            let scale: CGFloat = isHighlighted ? StyledButton.shrunkenScale : 1
+            UIView.animateSpring {
+                self.transform = CGAffineTransform(scaleX: scale, y: scale)
             }
         }
     }
@@ -114,6 +108,14 @@ class StyledButton: UIButton {
         }
     }
 
+}
+
+extension UIView{
+    class func animateSpring(duration: TimeInterval = 0.2, damping: CGFloat = 0.5, initialVelocity: CGFloat = 0, changes: @escaping () -> Void) -> Void{
+        if !UIAccessibility.isReduceMotionEnabled{
+            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: initialVelocity, options: [.allowAnimatedContent, .beginFromCurrentState], animations: changes, completion: nil)
+        }
+    }
 }
 
 extension UIControl.State: Hashable{

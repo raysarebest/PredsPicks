@@ -23,21 +23,22 @@ class AnswerButton: StyledButton {
 
     func displayForAnswerCorectness(_ correct: Bool) -> Void{
         isEnabled = false
-        let scale: CGFloat = correct ? 1 + (1 - AnswerButton.shrunkenScale) : AnswerButton.shrunkenScale
-        let changes = {
-            self.transform = CGAffineTransform(scaleX: scale, y: scale)
-            if !correct{
-                self.setOpacity(0.2, for: .disabled)
-            }
+
+        func opacityChange() -> Void {
+            self.setOpacity(0.2, for: .disabled)
         }
+
         if UIAccessibility.isReduceMotionEnabled{
-            changes()
+            UIView.animate(withDuration: 0.2, animations: opacityChange)
         }
         else{
-            UIView.animate(withDuration: AnswerButton.springDuration, delay: 0, usingSpringWithDamping: AnswerButton.springDamping, initialSpringVelocity: 0, options: [.allowAnimatedContent, .beginFromCurrentState], animations: changes, completion: nil)
-        }
-        if !correct{
-
+            let scale: CGFloat = correct ? 1 + (1 - AnswerButton.shrunkenScale) : AnswerButton.shrunkenScale
+            UIView.animateSpring {
+                self.transform = CGAffineTransform(scaleX: scale, y: scale)
+                if !correct{
+                    opacityChange()
+                }
+            }
         }
     }
 
