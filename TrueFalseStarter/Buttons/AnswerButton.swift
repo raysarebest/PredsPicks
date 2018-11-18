@@ -10,19 +10,25 @@ import UIKit
 
 class AnswerButton: StyledButton {
     let answer: Question.Answer
+    private var haptic: UINotificationFeedbackGenerator? = nil
 
     init(answer: Question.Answer){
         self.answer = answer
         super.init(frame: .zero)
         setTitle(answer.value, for: .normal)
         setTitleColor(.white, for: .normal)
-        setTitleColor(#colorLiteral(red: 0.5, green: 0.5, blue: 0.5, alpha: 1), for: .highlighted)
-        setBackgroundColor(#colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1), forState: .normal)
-        setBackgroundColor(#colorLiteral(red: 0.6363664622, green: 0.5305625917, blue: 0.3027452583, alpha: 1), forState: .highlighted)
+        setBackgroundColor(#colorLiteral(red: 1, green: 0.831372549, blue: 0.4745098039, alpha: 1), forState: .normal)
+
+        addTarget(self, action: #selector(prepareHaptic), for: .touchDown)
+        addTarget(self, action: #selector(prepareHaptic), for: .touchDragEnter)
+        addTarget(self, action: #selector(cancelHaptic), for: .touchCancel)
+        addTarget(self, action: #selector(cancelHaptic), for: .touchDragExit)
     }
 
     func displayForAnswerCorectness(_ correct: Bool) -> Void{
         isEnabled = false
+
+        haptic?.notificationOccurred(correct ? .success : .error)
 
         func opacityChange() -> Void {
             self.setOpacity(0.2, for: .disabled)
@@ -40,6 +46,15 @@ class AnswerButton: StyledButton {
                 }
             }
         }
+    }
+
+    @objc private func prepareHaptic() -> Void{
+        haptic = UINotificationFeedbackGenerator()
+        haptic?.prepare()
+    }
+
+    @objc private func cancelHaptic() -> Void{
+        haptic = nil
     }
 
     required init?(coder aDecoder: NSCoder){

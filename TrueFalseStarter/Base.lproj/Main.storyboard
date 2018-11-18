@@ -9,10 +9,72 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Welcome-->
+        <scene sceneID="twd-yT-AXM">
+            <objects>
+                <viewController storyboardIdentifier="welcome" title="Welcome" id="Qvl-8D-fCa" customClass="WelcomeViewController" customModule="TrueFalseStarter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XQs-BY-zTY"/>
+                        <viewControllerLayoutGuide type="bottom" id="gAn-Wz-2ay"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mMw-Rm-pQH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bam-kw-brT">
+                                <rect key="frame" x="16" y="291.5" width="343" height="84"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gJ-iO-O7D" customClass="LightningModeSelectionButton" customModule="TrueFalseStarter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
+                                        <color key="backgroundColor" red="0.0" green="0.57647058819999997" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Play"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="lightningMode" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="playAgain" destination="BYZ-38-t0r" eventType="touchUpInside" id="YTH-5I-fqi"/>
+                                            <action selector="startGameWithModeButton:" destination="Qvl-8D-fCa" eventType="touchUpInside" id="vP3-Zl-MnN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiD-Hi-mUt" customClass="LightningModeSelectionButton" customModule="TrueFalseStarter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="52" width="343" height="32"/>
+                                        <color key="backgroundColor" red="1" green="0.83137254901960778" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Lightning Mode"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="lightningMode" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="playAgain" destination="BYZ-38-t0r" eventType="touchUpInside" id="vgD-zg-U9M"/>
+                                            <action selector="startGameWithModeButton:" destination="Qvl-8D-fCa" eventType="touchUpInside" id="Npr-yv-asR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.031372549020000001" green="0.16862745100000001" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bam-kw-brT" firstAttribute="leading" secondItem="mMw-Rm-pQH" secondAttribute="leadingMargin" id="1XS-QD-uee"/>
+                            <constraint firstItem="bam-kw-brT" firstAttribute="trailing" secondItem="mMw-Rm-pQH" secondAttribute="trailingMargin" id="Wvw-mu-amF"/>
+                            <constraint firstItem="bam-kw-brT" firstAttribute="centerY" secondItem="mMw-Rm-pQH" secondAttribute="centerY" id="mQl-gU-T5y"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lightningButton" destination="aiD-Hi-mUt" id="tc5-Ne-gmg"/>
+                        <outlet property="normalButton" destination="2gJ-iO-O7D" id="yPu-UG-FcK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eus-k4-1pp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-754.39999999999998" y="26.53673163418291"/>
+        </scene>
+        <!--Quiz-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TrueFalseStarter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Quiz" id="BYZ-38-t0r" customClass="ViewController" customModule="TrueFalseStarter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -22,7 +84,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3V-ih-1Ky">
-                                <rect key="frame" x="37" y="80" width="300" height="50"/>
+                                <rect key="frame" x="37" y="80" width="301" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="LsZ-jm-83c"/>
                                 </constraints>
@@ -30,24 +92,11 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K17-uy-MvB" customClass="StyledButton" customModule="TrueFalseStarter" customModuleProvider="target">
-                                <rect key="frame" x="37" y="597" width="300" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="0.57647058823529407" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="5IQ-wf-xpb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Play Again"/>
-                                <connections>
-                                    <action selector="playAgain" destination="BYZ-38-t0r" eventType="touchUpInside" id="klz-B2-JAN"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIR-bb-ip3">
-                                <rect key="frame" x="37" y="138" width="300" height="451"/>
+                                <rect key="frame" x="37" y="138" width="301" height="469"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="200" axis="vertical" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lR4-2b-RT8">
-                                        <rect key="frame" x="0.0" y="125.5" width="300" height="200"/>
+                                        <rect key="frame" x="0.0" y="134.5" width="301" height="200"/>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -57,25 +106,56 @@
                                     <constraint firstItem="lR4-2b-RT8" firstAttribute="centerY" secondItem="RIR-bb-ip3" secondAttribute="centerY" id="YbE-hg-ATZ"/>
                                 </constraints>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="CU5-aG-Orl">
+                                <rect key="frame" x="37" y="615" width="301" height="32"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K17-uy-MvB" customClass="LightningModeSelectionButton" customModule="TrueFalseStarter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="140.5" height="32"/>
+                                        <color key="backgroundColor" red="0.0" green="0.57647058823529407" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Play Again"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="lightningMode" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="playAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g2W-bO-bgC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OjX-fZ-mii" customClass="LightningModeSelectionButton" customModule="TrueFalseStarter" customModuleProvider="target">
+                                        <rect key="frame" x="160.5" y="0.0" width="140.5" height="32"/>
+                                        <color key="backgroundColor" red="1" green="0.83137254900000002" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Lightning Mode"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="lightningMode" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="playAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6GA-cM-ep1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.031372549019607843" green="0.16862745098039217" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="I3V-ih-1Ky" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="49T-g9-z52"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="K17-uy-MvB" secondAttribute="bottom" constant="20" id="IS2-qb-Nqb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="I3V-ih-1Ky" secondAttribute="trailing" constant="22" id="Ib4-iP-hkd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="RIR-bb-ip3" secondAttribute="trailing" constant="22" id="Jpr-Aj-OLz"/>
-                            <constraint firstItem="I3V-ih-1Ky" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="21" id="PZs-jY-oa8"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="K17-uy-MvB" secondAttribute="trailing" constant="22" id="anD-Vo-wPG"/>
-                            <constraint firstItem="K17-uy-MvB" firstAttribute="top" secondItem="RIR-bb-ip3" secondAttribute="bottom" constant="8" id="cMm-5c-wEo"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CU5-aG-Orl" secondAttribute="bottom" constant="20" id="BRb-Qd-kRi"/>
+                            <constraint firstItem="I3V-ih-1Ky" firstAttribute="width" secondItem="RIR-bb-ip3" secondAttribute="width" id="CPm-Wz-hAG"/>
+                            <constraint firstItem="RIR-bb-ip3" firstAttribute="width" secondItem="CU5-aG-Orl" secondAttribute="width" id="Cjh-FB-Lk0"/>
+                            <constraint firstItem="CU5-aG-Orl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="21" id="DLq-wP-eC6"/>
+                            <constraint firstItem="RIR-bb-ip3" firstAttribute="centerX" secondItem="CU5-aG-Orl" secondAttribute="centerX" id="ahu-20-p3Y"/>
                             <constraint firstItem="RIR-bb-ip3" firstAttribute="top" secondItem="I3V-ih-1Ky" secondAttribute="bottom" constant="8" id="eAj-mO-Lro"/>
-                            <constraint firstItem="K17-uy-MvB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="21" id="g88-W8-Pip"/>
-                            <constraint firstItem="RIR-bb-ip3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="21" id="onv-RI-XRH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CU5-aG-Orl" secondAttribute="trailing" constant="21" id="eiM-OC-HAL"/>
+                            <constraint firstItem="I3V-ih-1Ky" firstAttribute="centerX" secondItem="RIR-bb-ip3" secondAttribute="centerX" id="otS-Zx-a0k"/>
+                            <constraint firstItem="CU5-aG-Orl" firstAttribute="top" secondItem="RIR-bb-ip3" secondAttribute="bottom" constant="8" id="rMJ-d3-A89"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="answersView" destination="lR4-2b-RT8" id="mnD-jL-7oR"/>
-                        <outlet property="playAgainButton" destination="K17-uy-MvB" id="0Bx-Cm-ye0"/>
+                        <outlet property="playAgainView" destination="CU5-aG-Orl" id="yeM-43-VaC"/>
                         <outlet property="questionField" destination="I3V-ih-1Ky" id="7UI-o2-ATi"/>
                     </connections>
                 </viewController>

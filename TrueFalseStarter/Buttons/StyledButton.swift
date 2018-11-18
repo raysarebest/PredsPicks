@@ -14,6 +14,7 @@ class StyledButton: UIButton {
     private var opacities = [UIControl.State: CGFloat]()
 
     static let shrunkenScale: CGFloat = 0.9
+    private static let highlightedColorFactor: CGFloat = 0.6
 
     override func layoutSubviews() -> Void{
         layer.cornerRadius = 5
@@ -63,7 +64,27 @@ class StyledButton: UIButton {
 
     func setBackgroundColor(_ color: UIColor, forState state: UIControl.State) -> Void{
         backgroundColors[state] = color
-        updateAppearance()
+
+        defer{
+            updateAppearance()
+        }
+
+        // If we're setting a color for the normal state, we want the highlighted state to be 40% or so darker
+        
+        guard state == .normal, let normal = backgroundColor(for: .normal) else{
+            return
+        }
+
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
+        var alpha: CGFloat = 0
+
+        guard normal.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) else{
+            return
+        }
+
+        setBackgroundColor(UIColor(hue: hue, saturation: saturation, brightness: brightness * StyledButton.highlightedColorFactor, alpha: alpha), forState: .highlighted)
     }
 
     func backgroundColor(for state: UIControl.State) -> UIColor?{
@@ -83,6 +104,23 @@ class StyledButton: UIButton {
         }
 
         super.setTitleColor(color?.withAlphaComponent(opacity), for: state)
+
+        // If we're setting a color for the normal state, we want the highlighted state to be 40% or so darker
+
+        guard state == .normal, let new = color else{
+            return
+        }
+
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
+        var alpha: CGFloat = 0
+
+        guard new.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) else{
+            return
+        }
+
+        super.setTitleColor(UIColor(hue: hue, saturation: saturation, brightness: brightness * StyledButton.highlightedColorFactor, alpha: alpha), for: .highlighted)
     }
 
     private func updateAppearance(shouldAnimate: Bool = true) -> Void{
@@ -107,7 +145,6 @@ class StyledButton: UIButton {
             changes()
         }
     }
-
 }
 
 extension UIView{

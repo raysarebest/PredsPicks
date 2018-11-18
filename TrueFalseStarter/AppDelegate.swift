@@ -16,6 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        guard let welcome = window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "welcome"), let launch = UIStoryboard(name: "LaunchScreen", bundle: .main).instantiateInitialViewController() else{
+            return true
+        }
+
+        launch.view.frame = welcome.view.bounds
+        launch.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        window?.makeKeyAndVisible()
+        window?.addSubview(launch.view)
+
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+                self.window?.rootViewController?.present(welcome, animated: false, completion: {
+                    UIView.animate(withDuration: 0.5, animations: {
+                        launch.view.alpha = 0
+                    }, completion: { (finished: Bool) in
+                        launch.view.removeFromSuperview()
+                    })
+                })
+            }
+        }
         return true
     }
 

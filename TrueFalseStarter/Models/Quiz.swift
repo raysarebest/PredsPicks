@@ -9,13 +9,18 @@
 import Foundation
 
 class Quiz{
+
+    fileprivate static let defaultLength = 4
+
     enum QuestionAnswerState{
         case correct
-        case incorrect(correctAnswer: Question.Answer?)
+        case incorrect(correctAnswer: Question.Answer)
+        case unanswered(correctAnswer: Question.Answer)
     }
     enum QuizError: Error{
         case quizComplete
     }
+
     private static let allQuestions: [Question] = {
         guard let path = Bundle.main.path(forResource: "Questions", ofType: "plist") else{
             fatalError("Couldn't find questions list")
@@ -25,8 +30,8 @@ class Quiz{
         }
         catch{
             fatalError("Error generating question data: " + error.localizedDescription)
-        }    }()
-
+        }
+    }()
     let questions: [Question]
     private(set) var currentQuestionIndex: Int? = 0 // This will be nil if the quiz has finished
     var currentQuestion: Question?{
@@ -47,12 +52,12 @@ class Quiz{
         }
     }
 
-    init(questionCount: Int = 4){
+    init(questionCount: Int = Quiz.defaultLength){
         // This gets a shuffled version of `allQuestions` and grabs the first n questions, where n is the `questionCount` passed in, or all of them if more than the total possible is requested
         questions = Array(Quiz.allQuestions.shuffled()[0..<(questionCount > Quiz.allQuestions.count ? Quiz.allQuestions.count : questionCount)])
     }
 
-    func answerCurrentQuestion(_ answer: Question.Answer) throws -> QuestionAnswerState{
+    func answerCurrentQuestion(_ answer: Question.Answer?) throws -> QuestionAnswerState{
         guard let question = currentQuestion else{
             throw QuizError.quizComplete
         }
@@ -66,13 +71,50 @@ class Quiz{
             }
         }
         
-        if answer.isCorrect(for: question){
+        if let givenAnswer = answer, givenAnswer.isCorrect(for: question){
             correctQuestions.insert(question)
             return .correct
         }
         else{
             incorrectQuestions.insert(question)
-            return .incorrect(correctAnswer: question.correctAnswer)
+            return answer == nil ? .unanswered(correctAnswer: question.correctAnswer) : .incorrect(correctAnswer: question.correctAnswer)
         }
+    }
+}
+
+protocol LightningQuizDelegate: class{
+    func timerDidTick(for question: Question, remainingSeconds: TimeInterval, quiz: LightningQuiz)
+    func timerDidExpire(for question: Question, quiz: LightningQuiz)
+}
+
+class LightningQuiz: Quiz{ // I wanted to put this in a different file, but I kept it in this one so the initializer would have access to the fileprivate Quiz.defaultLength
+
+    private(set) weak var delegate: LightningQuizDelegate?
+    private(set) var questionTimer: QuizTimer? = nil
+
+    init(questionCount: Int = Quiz.defaultLength, delegate: LightningQuizDelegate) {
+        self.delegate = delegate
+        super.init(questionCount: questionCount)
+    }
+
+    func startQuestionTimer() -> Void{
+        guard !isComplete, let question = currentQuestion else{ // No need for a new question/timer if the quiz is already over
+            return
+        }
+        questionTimer = QuizTimer(countdownHandler: { [weak self] (remainingSeconds: TimeInterval) in
+            guard let this = self else{ // This should never really happen, but force unwrapping is bad
+                return
+            }
+            this.delegate?.timerDidTick(for: question, remainingSeconds: remainingSeconds, quiz: this)
+
+            if remainingSeconds == 0{
+                this.delegate?.timerDidExpire(for: question, quiz: this)
+                let _ = try? this.answerCurrentQuestion(nil) // Error handling happens in the delegate and not here
+            }
+        })
+    }
+
+    func stopQuestionTimer() -> Void{
+        questionTimer?.stop()
     }
 }
