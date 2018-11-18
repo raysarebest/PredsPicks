@@ -84,7 +84,7 @@ class ViewController: UIViewController, LightningQuizDelegate{
         }
     }
     
-    func nextRound() {
+    func nextRound() -> Void{
         if trivia.isComplete{
             // Game is over
             displayScore()
@@ -152,7 +152,7 @@ class ViewController: UIViewController, LightningQuizDelegate{
 
     func timerDidExpire(for question: Question, quiz: LightningQuiz) -> Void{
         displayAnswerRevealView(question: question, userAnswerState: .unanswered(correctAnswer: question.correctAnswer))
-        loadNextRoundWithDelay()
+        loadNextRoundWithDelay(seconds: 4)
     }
 }
 
