@@ -12,8 +12,9 @@ class StyledButton: UIButton {
 
     private var backgroundColors = [UIControl.State: UIColor]()
     private var opacities = [UIControl.State: CGFloat]()
+    var shouldRenderHighlightedScale = true
 
-    static let shrunkenScale: CGFloat = 0.9
+    static let shrunkenScale: CGFloat = 0.95
     private static let highlightedColorFactor: CGFloat = 0.6
 
     override func layoutSubviews() -> Void{
@@ -54,10 +55,12 @@ class StyledButton: UIButton {
     override var isHighlighted: Bool{
         didSet{
             updateAppearance()
-
-            let scale: CGFloat = isHighlighted ? StyledButton.shrunkenScale : 1
-            UIView.animateSpring {
-                self.transform = CGAffineTransform(scaleX: scale, y: scale)
+            
+            if shouldRenderHighlightedScale{
+                let scale: CGFloat = isHighlighted ? StyledButton.shrunkenScale : 1
+                UIView.animateSpring {
+                    self.transform = CGAffineTransform(scaleX: scale, y: scale)
+                }
             }
         }
     }
@@ -143,6 +146,13 @@ class StyledButton: UIButton {
         }
         else{
             changes()
+        }
+    }
+
+    override func awakeFromNib() -> Void{
+        super.awakeFromNib()
+        if let background = backgroundColor{
+            setBackgroundColor(background, forState: .normal)
         }
     }
 }

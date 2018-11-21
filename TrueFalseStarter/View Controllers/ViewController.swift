@@ -25,15 +25,12 @@ class ViewController: UIViewController, LightningQuizDelegate{
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var answersView: UIStackView!
     @IBOutlet weak var playAgainView: UIStackView!
+    @IBOutlet weak var countdownView: CountdownView!
     
 
     override func viewDidLoad() -> Void{
         super.viewDidLoad()
-
         loadGameStartSound()
-        // Start game
-        playGameStartSound()
-        displayQuestion()
     }
     
     func displayQuestion() {
@@ -42,6 +39,8 @@ class ViewController: UIViewController, LightningQuizDelegate{
             return
         }
 
+        countdownView.resetCount()
+        countdownView.isHidden = false
         answersView.removeAllArrangedSubviews()
 
         for answer in question.possibleAnswers{
@@ -59,8 +58,9 @@ class ViewController: UIViewController, LightningQuizDelegate{
     }
     
     func displayScore() {
-        // Hide the answer buttons
+        // Hide the answer buttons and countdown
         answersView.removeAllArrangedSubviews()
+        countdownView.isHidden = true
         
         // Display play again buttons
         playAgainView.isHidden = false
@@ -77,6 +77,7 @@ class ViewController: UIViewController, LightningQuizDelegate{
             }
             let result = try trivia.answerCurrentQuestion(sender.answer)
             displayAnswerRevealView(question: currentQuestion, userAnswerState: result)
+            loadNextRoundWithDelay()
         }
         catch{
             // The only error that can be thrown is if the quiz is over
@@ -95,13 +96,13 @@ class ViewController: UIViewController, LightningQuizDelegate{
     }
     
     @IBAction func playAgain(_ sender: LightningModeSelectionButton) -> Void{
-        print(sender.lightningMode)
-        trivia = sender.lightningMode ? LightningQuiz(delegate: self) : Quiz()
-        nextRound()
+        newGame(lightning: sender.lightningMode)
     }
 
     func newGame(lightning: Bool) -> Void{
         trivia = lightning ? LightningQuiz(delegate: self) : Quiz()
+        countdownView.isHidden = !lightning
+        playGameStartSound()
         nextRound()
     }
     
@@ -142,12 +143,11 @@ class ViewController: UIViewController, LightningQuizDelegate{
             case .unanswered:
                 questionField.text = "Oops, out of time!"
         }
-        loadNextRoundWithDelay()
     }
     // MARK: - LightningQuizDelegate Conformance
 
     func timerDidTick(for question: Question, remainingSeconds: TimeInterval, quiz: LightningQuiz) -> Void{
-
+        countdownView.tick()
     }
 
     func timerDidExpire(for question: Question, quiz: LightningQuiz) -> Void{

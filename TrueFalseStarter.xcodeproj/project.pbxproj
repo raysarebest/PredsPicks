@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C3F6FB82175B15700531892 /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F6FB72175B15700531892 /* AnswerButton.swift */; };
 		4C55284A21A1F096002FB4C4 /* LightningModeSelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55284921A1F096002FB4C4 /* LightningModeSelectionButton.swift */; };
+		4C55285221A20806002FB4C4 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55285121A20806002FB4C4 /* CountdownView.swift */; };
 		4C942C6F216C6DEE002B4D2B /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C942C6E216C6DEE002B4D2B /* Question.swift */; };
 		4C942C71216C6F31002B4D2B /* Questions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C942C70216C6F31002B4D2B /* Questions.plist */; };
 		4C9E99C1216FDC820005D664 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E99C0216FDC820005D664 /* Quiz.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		4C3F6FB72175B15700531892 /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
 		4C55284921A1F096002FB4C4 /* LightningModeSelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningModeSelectionButton.swift; sourceTree = "<group>"; };
+		4C55285121A20806002FB4C4 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		4C942C6E216C6DEE002B4D2B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		4C942C70216C6F31002B4D2B /* Questions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Questions.plist; sourceTree = "<group>"; };
 		4C942C72216C77E7002B4D2B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				4CCB0063219A913600975A89 /* Buttons */,
+				4C55285121A20806002FB4C4 /* CountdownView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				4C942C6F216C6DEE002B4D2B /* Question.swift in Sources */,
 				4CF49F06219C0D2500A9F55A /* QuizTimer.swift in Sources */,
 				97093D3E1C913506001275BC /* ViewController.swift in Sources */,
+				4C55285221A20806002FB4C4 /* CountdownView.swift in Sources */,
 				4C9E99C1216FDC820005D664 /* Quiz.swift in Sources */,
 				97093D3C1C913506001275BC /* AppDelegate.swift in Sources */,
 				4C55284A21A1F096002FB4C4 /* LightningModeSelectionButton.swift in Sources */,

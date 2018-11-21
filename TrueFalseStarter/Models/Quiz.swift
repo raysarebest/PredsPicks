@@ -101,6 +101,7 @@ class LightningQuiz: Quiz{ // I wanted to put this in a different file, but I ke
         guard !isComplete, let question = currentQuestion else{ // No need for a new question/timer if the quiz is already over
             return
         }
+        stopQuestionTimer()
         questionTimer = QuizTimer(countdownHandler: { [weak self] (remainingSeconds: TimeInterval) in
             guard let this = self else{ // This should never really happen, but force unwrapping is bad
                 return
@@ -110,11 +111,13 @@ class LightningQuiz: Quiz{ // I wanted to put this in a different file, but I ke
             if remainingSeconds == 0{
                 this.delegate?.timerDidExpire(for: question, quiz: this)
                 let _ = try? this.answerCurrentQuestion(nil) // Error handling happens in the delegate and not here
+                self?.stopQuestionTimer()
             }
         })
     }
 
     func stopQuestionTimer() -> Void{
         questionTimer?.stop()
+        questionTimer = nil
     }
 }

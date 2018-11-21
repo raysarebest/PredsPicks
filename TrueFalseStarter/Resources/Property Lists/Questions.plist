@@ -4,41 +4,53 @@
 <array>
 	<dict>
 		<key>text</key>
-		<string>Only female koalas can whistle</string>
+		<string>Who was the first player picked to play for the Predators?</string>
 		<key>correctAnswer</key>
 		<dict>
 			<key>value</key>
-			<string>False</string>
+			<string>David Legwand</string>
 		</dict>
 		<key>possibleAnswers</key>
 		<array>
 			<dict>
 				<key>value</key>
-				<string>False</string>
+				<string>Filip Forsberg</string>
 			</dict>
 			<dict>
 				<key>value</key>
-				<string>True</string>
+				<string>Dan Hamhuis</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>David Legwand</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Paul Karyia</string>
 			</dict>
 		</array>
 	</dict>
 	<dict>
 		<key>text</key>
-		<string>Blue whales are technically whales</string>
+		<string>Which Predators goaltender holds the NHL record for most wins by a Finnish goalie?</string>
 		<key>correctAnswer</key>
 		<dict>
 			<key>value</key>
-			<string>True</string>
+			<string>Pekka Rinne</string>
 		</dict>
 		<key>possibleAnswers</key>
 		<array>
 			<dict>
 				<key>value</key>
-				<string>True</string>
+				<string>Tomas Vokoun</string>
 			</dict>
 			<dict>
 				<key>value</key>
-				<string>False</string>
+				<string>Pekka Rinne</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Juuse Saros</string>
 			</dict>
 		</array>
 	</dict>

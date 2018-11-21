@@ -10,6 +10,7 @@ import UIKit
 
 class AnswerButton: StyledButton {
     let answer: Question.Answer
+    // Making the haptic feedback generator nullable guarantees that only the button the user tapped on plays a haptic
     private var haptic: UINotificationFeedbackGenerator? = nil
 
     init(answer: Question.Answer){
@@ -19,8 +20,8 @@ class AnswerButton: StyledButton {
         setTitleColor(.white, for: .normal)
         setBackgroundColor(#colorLiteral(red: 1, green: 0.831372549, blue: 0.4745098039, alpha: 1), forState: .normal)
 
-        addTarget(self, action: #selector(prepareHaptic), for: .touchDown)
-        addTarget(self, action: #selector(prepareHaptic), for: .touchDragEnter)
+        addTarget(self, action: #selector(prepareFeedback), for: .touchDown)
+        addTarget(self, action: #selector(prepareFeedback), for: .touchDragEnter)
         addTarget(self, action: #selector(cancelHaptic), for: .touchCancel)
         addTarget(self, action: #selector(cancelHaptic), for: .touchDragExit)
     }
@@ -48,7 +49,8 @@ class AnswerButton: StyledButton {
         }
     }
 
-    @objc private func prepareHaptic() -> Void{
+    @objc private func prepareFeedback() -> Void{
+        shouldRenderHighlightedScale = false
         haptic = UINotificationFeedbackGenerator()
         haptic?.prepare()
     }

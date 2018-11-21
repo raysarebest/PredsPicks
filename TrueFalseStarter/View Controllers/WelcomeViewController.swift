@@ -12,22 +12,17 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var normalButton: UIButton!
     @IBOutlet weak var lightningButton: UIButton!
 
-    override func viewDidLoad() -> Void{
-        super.viewDidLoad()
-        guard let normal = normalButton as? StyledButton, let normalColor = normal.backgroundColor else{
+    @IBAction func startGameWithModeButton(_ sender: LightningModeSelectionButton) -> Void{
+        guard let presenter = presentingViewController as? ViewController else{ // If we're not presented by a quiz view controller, there's no need to do anything else
             return
         }
-
-        normal.setBackgroundColor(normalColor, forState: .normal)
-
-        guard let lightning = lightningButton as? StyledButton, let lightningColor = lightning.backgroundColor else{
-            return
-        }
-
-        lightning.setBackgroundColor(lightningColor, forState: .normal)
+        presenter.newGame(lightning: sender.lightningMode)
+        dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func startGameWithModeButton(_ sender: UIButton) -> Void{
-        dismiss(animated: true, completion: nil)
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        get{
+            return .lightContent
+        }
     }
 }
