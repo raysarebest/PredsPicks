@@ -17,8 +17,8 @@ class AnswerButton: StyledButton {
         self.answer = answer
         super.init(frame: .zero)
         setTitle(answer.value, for: .normal)
-        setTitleColor(.white, for: .normal)
-        setBackgroundColor(#colorLiteral(red: 1, green: 0.831372549, blue: 0.4745098039, alpha: 1), forState: .normal)
+        setTitleColor(#colorLiteral(red: 0.01568627451, green: 0.1176470588, blue: 0.2588235294, alpha: 1), for: .normal)
+        setBackgroundColor(#colorLiteral(red: 1, green: 0.7215686275, blue: 0.1098039216, alpha: 1), forState: .normal)
 
         addTarget(self, action: #selector(prepareFeedback), for: .touchDown)
         addTarget(self, action: #selector(prepareFeedback), for: .touchDragEnter)
