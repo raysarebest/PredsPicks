@@ -40,7 +40,6 @@ class ViewController: UIViewController, LightningQuizDelegate{
         }
 
         countdownView.resetCount()
-        countdownView.isHidden = false
         answersView.removeAllArrangedSubviews()
 
         for answer in question.possibleAnswers{
@@ -70,6 +69,9 @@ class ViewController: UIViewController, LightningQuizDelegate{
     }
     
     @objc func checkAnswer(_ sender: AnswerButton) -> Void{
+        if let lightningQuiz = trivia as? LightningQuiz{
+            lightningQuiz.stopQuestionTimer()
+        }
         do{
             guard let currentQuestion = trivia.currentQuestion else{
                 displayScore()

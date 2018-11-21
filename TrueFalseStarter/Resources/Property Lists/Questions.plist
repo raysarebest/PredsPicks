@@ -42,7 +42,7 @@
 		<array>
 			<dict>
 				<key>value</key>
-				<string>Tomas Vokoun</string>
+				<string>Kari Lehtonen</string>
 			</dict>
 			<dict>
 				<key>value</key>
@@ -56,41 +56,209 @@
 	</dict>
 	<dict>
 		<key>text</key>
-		<string>Camels are cannibalistic</string>
+		<string>Which tropy did the Predators recieve in 2018 for having the best regular-season record in the NHL?</string>
 		<key>correctAnswer</key>
 		<dict>
 			<key>value</key>
-			<string>False</string>
+			<string>President&apos;s Trophy</string>
 		</dict>
 		<key>possibleAnswers</key>
 		<array>
 			<dict>
 				<key>value</key>
-				<string>True</string>
+				<string>Calder Cup</string>
 			</dict>
 			<dict>
 				<key>value</key>
-				<string>False</string>
+				<string>Stanley Cup</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>President&apos;s Trophy</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Conn-Smythe Trophy</string>
 			</dict>
 		</array>
 	</dict>
 	<dict>
 		<key>text</key>
-		<string>All ducks are birds</string>
+		<string>What number does Kevin Fiala wear?</string>
 		<key>correctAnswer</key>
 		<dict>
 			<key>value</key>
-			<string>True</string>
+			<string>22</string>
 		</dict>
 		<key>possibleAnswers</key>
 		<array>
 			<dict>
 				<key>value</key>
-				<string>True</string>
+				<string>17</string>
 			</dict>
 			<dict>
 				<key>value</key>
-				<string>False</string>
+				<string>22</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>31</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>In which venue do the Predators play their home games?</string>
+		<key>correctAnswer</key>
+		<dict>
+			<key>value</key>
+			<string>Bridgestone Arena</string>
+		</dict>
+		<key>possibleAnswers</key>
+		<array>
+			<dict>
+				<key>value</key>
+				<string>Bridgestone Arena</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Nissan Stadium</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Wells-Fargo Center</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Phillips Arena</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>For which superstar was Shea Weber traded to the Montreal Canadiens in 2016?</string>
+		<key>correctAnswer</key>
+		<dict>
+			<key>value</key>
+			<string>P.K. Subban</string>
+		</dict>
+		<key>possibleAnswers</key>
+		<array>
+			<dict>
+				<key>value</key>
+				<string>P.K. Subban</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Ryan Johansen</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Steven Stamkos</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>What portmanteau of &quot;Nashville&quot; do the Predators claim to call home?</string>
+		<key>correctAnswer</key>
+		<dict>
+			<key>value</key>
+			<string>Smashville</string>
+		</dict>
+		<key>possibleAnswers</key>
+		<array>
+			<dict>
+				<key>value</key>
+				<string>Nashvegas</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Smashville</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Cashville</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Brashville</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>What&apos;s the Predators&apos; mascot&apos;s name?</string>
+		<key>correctAnswer</key>
+		<dict>
+			<key>value</key>
+			<string>Gnash</string>
+		</dict>
+		<key>possibleAnswers</key>
+		<array>
+			<dict>
+				<key>value</key>
+				<string>Gnash</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Gritty</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Saber</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>What aquatic animal do Predators fans throw onto the ice to start a rally?</string>
+		<key>correctAnswer</key>
+		<dict>
+			<key>value</key>
+			<string>Catfish</string>
+		</dict>
+		<key>possibleAnswers</key>
+		<array>
+			<dict>
+				<key>value</key>
+				<string>Catfish</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Octopus</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Shark</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>Starfish</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>In which year did the Predators first make the playoffs?</string>
+		<key>correctAnswer</key>
+		<dict>
+			<key>value</key>
+			<string>2004</string>
+		</dict>
+		<key>possibleAnswers</key>
+		<array>
+			<dict>
+				<key>value</key>
+				<string>2004</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>2011</string>
+			</dict>
+			<dict>
+				<key>value</key>
+				<string>1999</string>
 			</dict>
 		</array>
 	</dict>
