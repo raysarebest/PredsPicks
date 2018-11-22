@@ -43,6 +43,7 @@ class ViewController: UIViewController, LightningQuizDelegate{
         for answer in question.possibleAnswers{
             let button = AnswerButton(answer: answer)
             button.addTarget(self, action: #selector(checkAnswer(_:)), for: .touchUpInside)
+            button.addTarget(self, action: #selector(prepareForAnswer), for: .touchDown)
             answersView.addArrangedSubview(button)
         }
 
