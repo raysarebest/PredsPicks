@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        try? AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default)
+        try? AVAudioSession.sharedInstance().setActive(true, options: [])
 
         guard let welcome = window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "welcome"), let launch = UIStoryboard(name: "LaunchScreen", bundle: .main).instantiateInitialViewController() else{
             return true
@@ -64,4 +68,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

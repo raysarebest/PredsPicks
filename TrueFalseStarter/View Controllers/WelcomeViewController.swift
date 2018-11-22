@@ -16,6 +16,7 @@ class WelcomeViewController: UIViewController {
         guard let presenter = presentingViewController as? ViewController else{ // If we're not presented by a quiz view controller, there's no need to do anything else
             return
         }
+        GameSound.gameStart.prepare()
         presenter.newGame(lightning: sender.lightningMode)
         dismiss(animated: true, completion: nil)
     }

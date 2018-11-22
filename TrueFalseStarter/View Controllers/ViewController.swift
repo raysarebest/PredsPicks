@@ -12,8 +12,6 @@ import AudioToolbox
 
 class ViewController: UIViewController, LightningQuizDelegate{
     
-    var gameSound: SystemSoundID = 0
-    
     var trivia = Quiz()
 
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -30,7 +28,6 @@ class ViewController: UIViewController, LightningQuizDelegate{
 
     override func viewDidLoad() -> Void{
         super.viewDidLoad()
-        loadGameStartSound()
     }
     
     func displayQuestion() {
@@ -67,6 +64,11 @@ class ViewController: UIViewController, LightningQuizDelegate{
         questionField.text = "Way to go!\nYou got \(trivia.correctQuestions.count) out of \(trivia.questions.count) correct!"
         
     }
+
+    @objc private func prepareForAnswer() -> Void{
+        GameSound.correctAnswer.prepare()
+        GameSound.incorrectAnswer.prepare()
+    }
     
     @objc func checkAnswer(_ sender: AnswerButton) -> Void{
         if let lightningQuiz = trivia as? LightningQuiz{
@@ -79,7 +81,13 @@ class ViewController: UIViewController, LightningQuizDelegate{
             }
             let result = try trivia.answerCurrentQuestion(sender.answer)
             displayAnswerRevealView(question: currentQuestion, userAnswerState: result)
-            loadNextRoundWithDelay()
+            if let sound = result.sound, sound.duration != Double.signalingNaN{
+                sound.play()
+                loadNextRoundWithDelay(seconds: Int(Double.maximum(sound.duration.rounded(), 3)))
+            }
+            else{
+                loadNextRoundWithDelay()
+            }
         }
         catch{
             // The only error that can be thrown is if the quiz is over
@@ -104,7 +112,7 @@ class ViewController: UIViewController, LightningQuizDelegate{
     func newGame(lightning: Bool) -> Void{
         trivia = lightning ? LightningQuiz(delegate: self) : Quiz()
         countdownView.isHidden = !lightning
-        playGameStartSound()
+        GameSound.gameStart.play()
         nextRound()
     }
     
@@ -117,18 +125,8 @@ class ViewController: UIViewController, LightningQuizDelegate{
         }
     }
 
-    func loadNextRoundWithDelay(seconds: Int = 2) -> Void{
+    func loadNextRoundWithDelay(seconds: Int = 3) -> Void{
         loadNextRoundWithDelay(seconds: .seconds(seconds))
-    }
-    
-    func loadGameStartSound() {
-        let pathToSoundFile = Bundle.main.path(forResource: "GameSound", ofType: "wav")
-        let soundURL = URL(fileURLWithPath: pathToSoundFile!)
-        AudioServicesCreateSystemSoundID(soundURL as CFURL, &gameSound)
-    }
-    
-    func playGameStartSound() {
-        AudioServicesPlaySystemSound(gameSound)
     }
 
     func displayAnswerRevealView(question: Question, userAnswerState: Quiz.QuestionAnswerState) -> Void{
@@ -163,6 +161,20 @@ extension UIStackView{
         for view in arrangedSubviews{
             removeArrangedSubview(view)
             view.removeFromSuperview()
+        }
+    }
+}
+
+
+extension Quiz.QuestionAnswerState{
+    var sound: GameSound?{
+        get{
+            switch self {
+                case .correct:
+                    return .correctAnswer
+                case .incorrect, .unanswered:
+                    return .incorrectAnswer
+            }
         }
     }
 }

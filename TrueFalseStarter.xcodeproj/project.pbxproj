@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0648E221A5371A00163709 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0648E121A5371A00163709 /* Sound.swift */; };
+		4C0648E421A55CDC00163709 /* GameSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0648E321A55CDC00163709 /* GameSound.swift */; };
 		4C3F6FB82175B15700531892 /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F6FB72175B15700531892 /* AnswerButton.swift */; };
 		4C55284A21A1F096002FB4C4 /* LightningModeSelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55284921A1F096002FB4C4 /* LightningModeSelectionButton.swift */; };
 		4C55285221A20806002FB4C4 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55285121A20806002FB4C4 /* CountdownView.swift */; };
@@ -21,10 +23,11 @@
 		97093D411C913506001275BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97093D3F1C913506001275BC /* Main.storyboard */; };
 		97093D431C913506001275BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97093D421C913506001275BC /* Assets.xcassets */; };
 		97093D461C913506001275BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97093D441C913506001275BC /* LaunchScreen.storyboard */; };
-		97093D531C932116001275BC /* GameSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 97093D521C932116001275BC /* GameSound.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C0648E121A5371A00163709 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		4C0648E321A55CDC00163709 /* GameSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSound.swift; sourceTree = "<group>"; };
 		4C3F6FB72175B15700531892 /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
 		4C55284921A1F096002FB4C4 /* LightningModeSelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningModeSelectionButton.swift; sourceTree = "<group>"; };
 		4C55285121A20806002FB4C4 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
@@ -33,7 +36,7 @@
 		4C942C72216C77E7002B4D2B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4C9E99C0216FDC820005D664 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		4CCB0064219A916500975A89 /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
-		4CF49F05219C0D2500A9F55A /* QuizTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuizTimer.swift; path = TrueFalseStarter/Models/QuizTimer.swift; sourceTree = SOURCE_ROOT; };
+		4CF49F05219C0D2500A9F55A /* QuizTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuizTimer.swift; path = TrueFalseStarter/Models/Quiz/QuizTimer.swift; sourceTree = SOURCE_ROOT; };
 		4CF49F09219EA2F300A9F55A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		97093D381C913506001275BC /* TrueFalseStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrueFalseStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97093D3B1C913506001275BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +45,6 @@
 		97093D421C913506001275BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97093D451C913506001275BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97093D471C913506001275BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		97093D521C932116001275BC /* GameSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GameSound.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C0648DF21A536E200163709 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				4C942C6E216C6DEE002B4D2B /* Question.swift */,
+				4C9E99C0216FDC820005D664 /* Quiz.swift */,
+				4CF49F05219C0D2500A9F55A /* QuizTimer.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		4C0648E021A536EA00163709 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				4C0648E121A5371A00163709 /* Sound.swift */,
+				4C0648E321A55CDC00163709 /* GameSound.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		4C55284B21A1F4ED002FB4C4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,7 +101,6 @@
 				97093D421C913506001275BC /* Assets.xcassets */,
 				4C55284E21A1F533002FB4C4 /* Storyboards */,
 				4C55285021A1F557002FB4C4 /* Property Lists */,
-				4C55284F21A1F53B002FB4C4 /* Sounds */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -92,14 +112,6 @@
 				97093D441C913506001275BC /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		4C55284F21A1F53B002FB4C4 /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				97093D521C932116001275BC /* GameSound.wav */,
-			);
-			path = Sounds;
 			sourceTree = "<group>";
 		};
 		4C55285021A1F557002FB4C4 /* Property Lists */ = {
@@ -124,9 +136,8 @@
 		4CF49F04219C0CDA00A9F55A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4C942C6E216C6DEE002B4D2B /* Question.swift */,
-				4C9E99C0216FDC820005D664 /* Quiz.swift */,
-				4CF49F05219C0D2500A9F55A /* QuizTimer.swift */,
+				4C0648E021A536EA00163709 /* Audio */,
+				4C0648DF21A536E200163709 /* Quiz */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -220,7 +231,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97093D531C932116001275BC /* GameSound.wav in Resources */,
 				97093D461C913506001275BC /* LaunchScreen.storyboard in Resources */,
 				97093D431C913506001275BC /* Assets.xcassets in Resources */,
 				4C942C71216C6F31002B4D2B /* Questions.plist in Resources */,
@@ -236,12 +246,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CCB0065219A916500975A89 /* StyledButton.swift in Sources */,
+				4C0648E221A5371A00163709 /* Sound.swift in Sources */,
 				4CF49F0A219EA2F300A9F55A /* WelcomeViewController.swift in Sources */,
 				4C3F6FB82175B15700531892 /* AnswerButton.swift in Sources */,
 				4C942C6F216C6DEE002B4D2B /* Question.swift in Sources */,
 				4CF49F06219C0D2500A9F55A /* QuizTimer.swift in Sources */,
 				97093D3E1C913506001275BC /* ViewController.swift in Sources */,
 				4C55285221A20806002FB4C4 /* CountdownView.swift in Sources */,
+				4C0648E421A55CDC00163709 /* GameSound.swift in Sources */,
 				4C9E99C1216FDC820005D664 /* Quiz.swift in Sources */,
 				97093D3C1C913506001275BC /* AppDelegate.swift in Sources */,
 				4C55284A21A1F096002FB4C4 /* LightningModeSelectionButton.swift in Sources */,
