@@ -37,6 +37,7 @@ class ViewController: UIViewController, LightningQuizDelegate{
         }
 
         countdownView.resetCount()
+        countdownView.tintColor = .white
         answersView.removeAllArrangedSubviews()
 
         for answer in question.possibleAnswers{
@@ -153,9 +154,6 @@ class ViewController: UIViewController, LightningQuizDelegate{
         countdownView.tick()
         if remainingSeconds <= 3{
             countdownView.tintColor = .red
-        }
-        else{
-            countdownView.tintColor = .white
         }
         if remainingSeconds == 1{
             GameSound.questionExpired.prepare()
