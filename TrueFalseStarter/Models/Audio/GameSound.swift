@@ -15,6 +15,9 @@ enum GameSound: String, Hashable, Playable{
     case gameStart = "start"
     case correctAnswer = "correct-answer"
     case incorrectAnswer = "incorrect-answer"
+    case questionExpired = "time-expired"
+    case gameEnd = "time-expired " // A little hack to use the same identifier: Add some whitespace at compile-time and trim it at runtime
+    case clockTicked = "tick"
 
     var duration: TimeInterval{
         get{
@@ -25,11 +28,11 @@ enum GameSound: String, Hashable, Playable{
     private var fileType: AVFileType{
         get{
             switch self {
-                case .gameStart:
+                case .gameStart, .clockTicked:
                     return .wav
                 case .correctAnswer:
                     return .caf
-                case .incorrectAnswer:
+                case .incorrectAnswer, .questionExpired, .gameEnd:
                     return .aifc
             }
         }
@@ -41,7 +44,7 @@ enum GameSound: String, Hashable, Playable{
                 return preloaded
             }
             else{
-                guard let asset = NSDataAsset(name: "Sounds/" + rawValue) else{
+                guard let asset = NSDataAsset(name: "Sounds/" + rawValue.trimmingCharacters(in: .whitespacesAndNewlines)) else{
                     fatalError("Sound \"\(rawValue)\" not included in bundle")
                 }
                 if let new = try? Sound(data: asset.data, type: fileType){

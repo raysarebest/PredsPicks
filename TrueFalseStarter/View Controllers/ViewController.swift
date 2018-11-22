@@ -60,6 +60,8 @@ class ViewController: UIViewController, LightningQuizDelegate{
         
         // Display play again buttons
         playAgainView.isHidden = false
+
+        GameSound.gameEnd.play()
         
         questionField.text = "Way to go!\nYou got \(trivia.correctQuestions.count) out of \(trivia.questions.count) correct!"
         
@@ -147,11 +149,22 @@ class ViewController: UIViewController, LightningQuizDelegate{
     // MARK: - LightningQuizDelegate Conformance
 
     func timerDidTick(for question: Question, remainingSeconds: TimeInterval, quiz: LightningQuiz) -> Void{
+        GameSound.clockTicked.play()
         countdownView.tick()
+        if remainingSeconds <= 3{
+            countdownView.tintColor = .red
+        }
+        else{
+            countdownView.tintColor = .white
+        }
+        if remainingSeconds == 1{
+            GameSound.questionExpired.prepare()
+        }
     }
 
     func timerDidExpire(for question: Question, quiz: LightningQuiz) -> Void{
         displayAnswerRevealView(question: question, userAnswerState: .unanswered(correctAnswer: question.correctAnswer))
+        GameSound.questionExpired.play()
         loadNextRoundWithDelay(seconds: 4)
     }
 }
@@ -172,8 +185,10 @@ extension Quiz.QuestionAnswerState{
             switch self {
                 case .correct:
                     return .correctAnswer
-                case .incorrect, .unanswered:
+                case .incorrect:
                     return .incorrectAnswer
+                case .unanswered:
+                    return .questionExpired
             }
         }
     }
