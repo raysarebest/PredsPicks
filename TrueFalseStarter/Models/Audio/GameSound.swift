@@ -9,9 +9,10 @@
 import Foundation
 import AVFoundation
 
-private var loadedGameSounds = [GameSound: Sound]()
-
 enum GameSound: String, Hashable, Playable{
+
+    // MARK: - Cases
+
     case gameStart = "start"
     case correctAnswer = "correct-answer"
     case incorrectAnswer = "incorrect-answer"
@@ -19,11 +20,7 @@ enum GameSound: String, Hashable, Playable{
     case gameEnd = "time-expired " // A little hack to use the same identifier: Add some whitespace at compile-time and trim it at runtime
     case clockTicked = "tick"
 
-    var duration: TimeInterval{
-        get{
-            return loaded?.duration ?? Double.signalingNaN
-        }
-    }
+    // MARK: - Helper Properties
 
     private var fileType: AVFileType{
         get{
@@ -58,6 +55,14 @@ enum GameSound: String, Hashable, Playable{
         }
     }
 
+    // MARK: - Playable Conformance
+
+    var duration: TimeInterval{
+        get{
+            return loaded?.duration ?? Double.signalingNaN
+        }
+    }
+
     func prepare() -> Void{
         loaded?.prepare()
     }
@@ -66,6 +71,10 @@ enum GameSound: String, Hashable, Playable{
         loaded?.play()
     }
 }
+
+// MARK: - Cache Management
+
+private var loadedGameSounds = [GameSound: Sound]()
 
 import UIKit // I feel bad about doing this here, but it's better than exposing a public API to the internal cache imo, since I don't implement this function anywhere else
 extension AppDelegate{

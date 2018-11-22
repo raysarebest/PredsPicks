@@ -10,26 +10,12 @@ import UIKit
 
 class StyledButton: UIButton {
 
+    // MARK: - State Control
+
     private var backgroundColors = [UIControl.State: UIColor]()
     private var opacities = [UIControl.State: CGFloat]()
-    var shouldRenderHighlightedScale = true
 
-    static let shrunkenScale: CGFloat = 0.95
-    private static let highlightedColorFactor: CGFloat = 0.6
-
-    override func layoutSubviews() -> Void{
-        layer.cornerRadius = 5
-        titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        showsTouchWhenHighlighted = true
-        super.layoutSubviews()
-    }
-
-    override var intrinsicContentSize: CGSize{
-        get{
-            return CGSize(width: super.intrinsicContentSize.width, height: CGFloat.maximum(50, super.intrinsicContentSize.height))
-        }
-    }
-
+    private static let possibleStates: [UIControl.State] = [.normal, .highlighted, .disabled, .selected, .focused]
     var currentState: UIControl.State{
         get{
             if isHighlighted{
@@ -50,12 +36,23 @@ class StyledButton: UIButton {
         }
     }
 
-    private static let possibleStates: [UIControl.State] = [.normal, .highlighted, .disabled, .selected, .focused]
+    // MARK: - Highlight State Management
+
+    var shouldRenderHighlightedScale = true
+    static let shrunkenScale: CGFloat = 0.95
+    private static let highlightedColorFactor: CGFloat = 0.6
+
+    override func layoutSubviews() -> Void{
+        layer.cornerRadius = 5
+        titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        showsTouchWhenHighlighted = true
+        super.layoutSubviews()
+    }
 
     override var isHighlighted: Bool{
         didSet{
             updateAppearance()
-            
+
             if shouldRenderHighlightedScale{
                 let scale: CGFloat = isHighlighted ? StyledButton.shrunkenScale : 1
                 UIView.animateSpring {
@@ -65,6 +62,16 @@ class StyledButton: UIButton {
         }
     }
 
+    // MARK: - Non-state-based UI Management
+
+    override var intrinsicContentSize: CGSize{
+        get{
+            return CGSize(width: super.intrinsicContentSize.width, height: CGFloat.maximum(50, super.intrinsicContentSize.height))
+        }
+    }
+
+    // MARK: - State-based UI Management
+
     func setBackgroundColor(_ color: UIColor, forState state: UIControl.State) -> Void{
         backgroundColors[state] = color
 
@@ -73,7 +80,7 @@ class StyledButton: UIButton {
         }
 
         // If we're setting a color for the normal state, we want the highlighted state to be 40% or so darker
-        
+
         guard state == .normal, let normal = backgroundColor(for: .normal) else{
             return
         }
@@ -98,6 +105,10 @@ class StyledButton: UIButton {
         opacities[state] = alpha
         setTitleColor(titleColor(for: state), for: state)
         updateAppearance()
+    }
+
+    func opacity(for state: UIControl.State) -> CGFloat?{
+        return opacities[state]
     }
 
     override func setTitleColor(_ color: UIColor?, for state: UIControl.State) -> Void{
@@ -126,9 +137,11 @@ class StyledButton: UIButton {
         super.setTitleColor(UIColor(hue: hue, saturation: saturation, brightness: brightness * StyledButton.highlightedColorFactor, alpha: alpha), for: .highlighted)
     }
 
+    // MARK: - Helpers
+
     private func updateAppearance(shouldAnimate: Bool = true) -> Void{
-        let possilbeColor = backgroundColors[currentState] ?? backgroundColors[.normal]
-        let possibleOpacity = opacities[currentState] ?? opacities[.normal]
+        let possilbeColor = backgroundColor(for: currentState) ?? backgroundColor(for: .normal)
+        let possibleOpacity = opacity(for: currentState) ?? opacity(for: .normal)
 
         let changes = {
             if let background = possilbeColor{
@@ -149,6 +162,8 @@ class StyledButton: UIButton {
         }
     }
 
+    // MARK: - Lifecycle Management
+
     override func awakeFromNib() -> Void{
         super.awakeFromNib()
         if let background = backgroundColor{
@@ -156,6 +171,8 @@ class StyledButton: UIButton {
         }
     }
 }
+
+// MARK: - Helper Extensions
 
 extension UIView{
     class func animateSpring(duration: TimeInterval = 0.2, damping: CGFloat = 0.5, initialVelocity: CGFloat = 0, changes: @escaping () -> Void) -> Void{

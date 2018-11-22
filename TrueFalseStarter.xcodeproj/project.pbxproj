@@ -12,6 +12,9 @@
 		4C3F6FB82175B15700531892 /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F6FB72175B15700531892 /* AnswerButton.swift */; };
 		4C55284A21A1F096002FB4C4 /* LightningModeSelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55284921A1F096002FB4C4 /* LightningModeSelectionButton.swift */; };
 		4C55285221A20806002FB4C4 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55285121A20806002FB4C4 /* CountdownView.swift */; };
+		4C56DF0C21A7468400B443E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C56DF0B21A7468400B443E5 /* Foundation.framework */; };
+		4C56DF0E21A7468900B443E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C56DF0D21A7468900B443E5 /* UIKit.framework */; };
+		4C56DF1021A7469000B443E5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C56DF0F21A7469000B443E5 /* AVFoundation.framework */; };
 		4C942C6F216C6DEE002B4D2B /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C942C6E216C6DEE002B4D2B /* Question.swift */; };
 		4C942C71216C6F31002B4D2B /* Questions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C942C70216C6F31002B4D2B /* Questions.plist */; };
 		4C9E99C1216FDC820005D664 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E99C0216FDC820005D664 /* Quiz.swift */; };
@@ -31,6 +34,9 @@
 		4C3F6FB72175B15700531892 /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
 		4C55284921A1F096002FB4C4 /* LightningModeSelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningModeSelectionButton.swift; sourceTree = "<group>"; };
 		4C55285121A20806002FB4C4 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
+		4C56DF0B21A7468400B443E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4C56DF0D21A7468900B443E5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4C56DF0F21A7469000B443E5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4C942C6E216C6DEE002B4D2B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		4C942C70216C6F31002B4D2B /* Questions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Questions.plist; sourceTree = "<group>"; };
 		4C942C72216C77E7002B4D2B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -52,6 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C56DF1021A7469000B443E5 /* AVFoundation.framework in Frameworks */,
+				4C56DF0E21A7468900B443E5 /* UIKit.framework in Frameworks */,
+				4C56DF0C21A7468400B443E5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +132,16 @@
 			path = "Property Lists";
 			sourceTree = "<group>";
 		};
+		4C56DF0A21A7468400B443E5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C56DF0F21A7469000B443E5 /* AVFoundation.framework */,
+				4C56DF0D21A7468900B443E5 /* UIKit.framework */,
+				4C56DF0B21A7468400B443E5 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4CCB0063219A913600975A89 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +167,7 @@
 				4C942C72216C77E7002B4D2B /* README.md */,
 				97093D3A1C913506001275BC /* TrueFalseStarter */,
 				97093D391C913506001275BC /* Products */,
+				4C56DF0A21A7468400B443E5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

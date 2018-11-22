@@ -8,9 +8,22 @@
 
 import UIKit
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController{
+
+    // MARK: - Outlets
+
     @IBOutlet weak var normalButton: UIButton!
     @IBOutlet weak var lightningButton: UIButton!
+
+    // MARK: - UI Management
+
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        get{
+            return .lightContent
+        }
+    }
+
+    // MARK: - Actions
 
     @IBAction func startGameWithModeButton(_ sender: LightningModeSelectionButton) -> Void{
         guard let presenter = presentingViewController as? ViewController else{ // If we're not presented by a quiz view controller, there's no need to do anything else
@@ -19,11 +32,5 @@ class WelcomeViewController: UIViewController {
         GameSound.gameStart.prepare()
         presenter.newGame(lightning: sender.lightningMode)
         dismiss(animated: true, completion: nil)
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        get{
-            return .lightContent
-        }
     }
 }

@@ -9,7 +9,10 @@
 typealias Quizzable = Decodable & Hashable
 
 struct Question: Quizzable{
-    struct Answer: Quizzable{
+
+    // MARK: - Answer Model Definition
+
+    struct Answer: Quizzable{ // I spent a long time trying to make this a generic, because an answer could reasonably be anything, but Swift's generic system didn't wanna work with me, so values are just Strings for now
         let value: String
         func isCorrect(for question: Question) -> Bool{
             return value == question.correctAnswer.value
@@ -18,6 +21,9 @@ struct Question: Quizzable{
             self.value = value
         }
     }
+
+    // MARK: - Properties
+
     let text: String
     let possibleAnswers: Set<Answer>
     let correctAnswer: Answer

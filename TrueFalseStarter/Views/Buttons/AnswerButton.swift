@@ -9,9 +9,14 @@
 import UIKit
 
 class AnswerButton: StyledButton {
+
+    // MARK: - Properties
+
     let answer: Question.Answer
-    // Making the haptic feedback generator nullable guarantees that only the button the user tapped on plays a haptic
+    // Making the haptic feedback generator optional guarantees that only the button the user tapped on plays a haptic
     private var haptic: UINotificationFeedbackGenerator? = nil
+
+    // MARK: - Initializers
 
     init(answer: Question.Answer){
         self.answer = answer
@@ -25,6 +30,18 @@ class AnswerButton: StyledButton {
         addTarget(self, action: #selector(cancelHaptic), for: .touchCancel)
         addTarget(self, action: #selector(cancelHaptic), for: .touchDragExit)
     }
+
+    required init?(coder aDecoder: NSCoder){
+        if let decodedAnswer = aDecoder.decodeObject(forKey: "answer") as? Question.Answer{
+            self.answer = decodedAnswer
+        }
+        else{
+            return nil
+        }
+        super.init(coder: aDecoder)
+    }
+
+    // MARK: - UI Helpers
 
     func displayForAnswerCorectness(_ correct: Bool) -> Void{
         isEnabled = false
@@ -49,6 +66,8 @@ class AnswerButton: StyledButton {
         }
     }
 
+    // MARK: - Private Helpers
+
     @objc private func prepareFeedback() -> Void{
         shouldRenderHighlightedScale = false
         haptic = UINotificationFeedbackGenerator()
@@ -57,15 +76,5 @@ class AnswerButton: StyledButton {
 
     @objc private func cancelHaptic() -> Void{
         haptic = nil
-    }
-
-    required init?(coder aDecoder: NSCoder){
-        if let decodedAnswer = aDecoder.decodeObject(forKey: "answer") as? Question.Answer{
-            self.answer = decodedAnswer
-        }
-        else{
-            return nil
-        }
-        super.init(coder: aDecoder)
     }
 }

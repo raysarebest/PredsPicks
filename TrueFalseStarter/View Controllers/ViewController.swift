@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import GameKit
-import AudioToolbox
 
 class ViewController: UIViewController, LightningQuizDelegate{
+
+    // MARK: - Properties
     
     var trivia = Quiz()
 
@@ -19,18 +19,17 @@ class ViewController: UIViewController, LightningQuizDelegate{
             return .lightContent
         }
     }
+
+    // MARK: - Outlets
     
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var answersView: UIStackView!
     @IBOutlet weak var playAgainView: UIStackView!
     @IBOutlet weak var countdownView: CountdownView!
-    
 
-    override func viewDidLoad() -> Void{
-        super.viewDidLoad()
-    }
+    // MARK: - Game Management
     
-    func displayQuestion() {
+    func displayQuestion() -> Void{
         guard let question = trivia.currentQuestion else{
             displayScore()
             return
@@ -53,20 +52,6 @@ class ViewController: UIViewController, LightningQuizDelegate{
         if let quiz  = trivia as? LightningQuiz{ // If we're in lightning mode, we need to start the timer once the question is displayed
             quiz.startQuestionTimer()
         }
-    }
-    
-    func displayScore() {
-        // Hide the answer buttons and countdown
-        answersView.removeAllArrangedSubviews()
-        countdownView.isHidden = true
-        
-        // Display play again buttons
-        playAgainView.isHidden = false
-
-        GameSound.gameEnd.play()
-        
-        questionField.text = "Way to go!\nYou got \(trivia.correctQuestions.count) out of \(trivia.questions.count) correct!"
-        
     }
 
     @objc private func prepareForAnswer() -> Void{
@@ -98,6 +83,22 @@ class ViewController: UIViewController, LightningQuizDelegate{
             displayScore()
         }
     }
+
+    func displayAnswerRevealView(question: Question, userAnswerState: Quiz.QuestionAnswerState) -> Void{
+        if let buttons = answersView.arrangedSubviews as? [AnswerButton]{
+            for button in buttons{
+                button.displayForAnswerCorectness(button.answer.isCorrect(for: question))
+            }
+        }
+        switch userAnswerState{
+        case .correct:
+            questionField.text = "Correct!"
+        case .incorrect:
+            questionField.text = "Sorry, wrong answer!"
+        case .unanswered:
+            questionField.text = "Oops, out of time!"
+        }
+    }
     
     func nextRound() -> Void{
         if trivia.isComplete{
@@ -107,6 +108,19 @@ class ViewController: UIViewController, LightningQuizDelegate{
             // Continue game
             displayQuestion()
         }
+    }
+
+    func displayScore() -> Void{
+        // Hide the answer buttons and countdown
+        answersView.removeAllArrangedSubviews()
+        countdownView.isHidden = true
+
+        // Display play again buttons
+        playAgainView.isHidden = false
+
+        GameSound.gameEnd.play()
+
+        questionField.text = "Way to go!\nYou got \(trivia.correctQuestions.count) out of \(trivia.questions.count) correct!"
     }
     
     @IBAction func playAgain(_ sender: LightningModeSelectionButton) -> Void{
@@ -120,7 +134,7 @@ class ViewController: UIViewController, LightningQuizDelegate{
         nextRound()
     }
     
-    // MARK: Helper Methods
+    // MARK: - Helper Methods
     
     func loadNextRoundWithDelay(seconds: DispatchTimeInterval) -> Void{
         // Executes the nextRound method at the dispatch time on the main queue
@@ -133,21 +147,6 @@ class ViewController: UIViewController, LightningQuizDelegate{
         loadNextRoundWithDelay(seconds: .seconds(seconds))
     }
 
-    func displayAnswerRevealView(question: Question, userAnswerState: Quiz.QuestionAnswerState) -> Void{
-        if let buttons = answersView.arrangedSubviews as? [AnswerButton]{
-            for button in buttons{
-                button.displayForAnswerCorectness(button.answer.isCorrect(for: question))
-            }
-        }
-        switch userAnswerState{
-            case .correct:
-                questionField.text = "Correct!"
-            case .incorrect:
-                questionField.text = "Sorry, wrong answer!"
-            case .unanswered:
-                questionField.text = "Oops, out of time!"
-        }
-    }
     // MARK: - LightningQuizDelegate Conformance
 
     func timerDidTick(for question: Question, remainingSeconds: TimeInterval, quiz: LightningQuiz) -> Void{
@@ -167,6 +166,8 @@ class ViewController: UIViewController, LightningQuizDelegate{
         loadNextRoundWithDelay(seconds: 4)
     }
 }
+
+// MARK: - Helper Extensions
 
 extension UIStackView{
     func removeAllArrangedSubviews() -> Void{

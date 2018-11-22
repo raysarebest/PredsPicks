@@ -10,18 +10,23 @@ import Foundation
 import AVFoundation
 
 protocol Playable{
-    var duration: TimeInterval{get}
+    var duration: TimeInterval { get }
     func prepare() -> Void
     func play() -> Void
 }
 
 class Sound: Playable{
+
+    // MARK: - Properties
+
     private let player: AVAudioPlayer
     var duration: TimeInterval{
         get{
             return player.duration
         }
     }
+
+    // MARK: - Initializers
 
     init(file: URL, type: AVFileType? = nil) throws{
         player = try AVAudioPlayer(contentsOf: file, fileTypeHint: type?.rawValue)
@@ -30,6 +35,8 @@ class Sound: Playable{
     init(data: Data, type: AVFileType? = nil) throws{
         player = try AVAudioPlayer(data: data, fileTypeHint: type?.rawValue)
     }
+
+    // MARK: - Playable Conformance
 
     func prepare() -> Void{
         player.prepareToPlay()
